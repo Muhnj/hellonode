@@ -1,0 +1,16 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Login - Karibu Groceries
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet')
+  link(rel='stylesheet' href='./styles.css')
+.login-container
+  form#loginForm.login-form
+    h2 Login
+    input#email.form-control(type='email' placeholder='Email Address' required='')
+    input#password.form-control(type='password' placeholder='Password' required='')
+    button.btn.btn-custom(type='submit') Login
+    p.mt-3
+      | Don&apos;t have an account? 
+      a(href='./signup.html') Register

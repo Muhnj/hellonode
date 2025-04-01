@@ -1,0 +1,303 @@
+body, html {
+    height: 100%;
+    margin: 0;
+        font-family: 'Arial', sans-serif
+    }
+/* Hero Section Styling */
+.hero-section {
+position: relative;
+color: white; 
+padding: 100px 0;
+text-align: center;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+z-index: 1;
+}
+
+.hero-section::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to right, rgba(77, 109, 74, 0.7), rgba(209, 204, 107, 0.7)), 
+        url('./images/groceries.jpg'); 
+background-size: cover;
+background-position: center;
+background-blend-mode: overlay;
+opacity: 0.9; /* Adjust opacity */
+z-index: -1;
+}
+
+
+/* Ensure Text & Buttons Stay Above the Overlay */
+.hero-section h1, 
+.hero-section p, 
+.hero-section a {
+position: relative;
+z-index: 2; /* Ensures text & buttons are above the background */
+}
+
+/* Button Styling */
+.hero-section a.btn {
+margin: 10px;
+font-size: 1.2rem;
+padding: 10px 20px;
+}
+
+
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.hero-section .btn {
+    font-size: 1.1rem;
+    padding: 15px 40px;
+    margin: 10px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section .btn-light {
+    background-color: rgb(5, 73, 28) ;;
+    color: white;
+}
+
+.hero-section .btn-light:hover {
+    background-color: transparent;
+    color:black;
+}
+
+.hero-section .btn-warning {
+    background-color: rgb(5, 73, 28) ;;
+    color: white;
+}
+
+.hero-section .btn-warning:hover {
+    background-color: transparent ;
+    color:black;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: rgb(5, 73, 28) ;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animations for fading in */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color:rgb(5, 73, 28) ;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #a59996 !important;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+
+/*login*/
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #4D6D4A, #D1CC6B);
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form {
+    background-color: rgba(5, 73, 28, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-form .form-control {
+    border-radius: 20px;
+    padding: 12px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.login-form .btn-custom {
+    background-color: #D1CC6B;
+    color: black;
+    border-radius: 20px;
+    padding: 12px;
+    font-size: 1.2rem;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.login-form .btn-custom:hover {
+    background-color: white;
+    color: black;
+}
+
+.login-form a {
+    color: #D1CC6B;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+/*Product*/
+table {
+     width: 100%; 
+     border-collapse: collapse; 
+     margin-top: 20px; 
+    }
+th, td {
+     border: 1px solid #ddd;
+     padding: 10px; 
+     text-align: 
+     center; 
+    }
+th { background-color: #f4f4f4;
+ }
+button {
+     padding: 5px 10px;
+     cursor: pointer; 
+    }
+
+
+
+    /*register*/
+    
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #4D6D4A, #D1CC6B);
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-form {
+    background-color: rgba(5, 73, 28, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.register-form h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.register-form .form-control {
+    border-radius: 20px;
+    padding: 12px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.register-form .btn-custom {
+    background-color: #D1CC6B;
+    color: black;
+    border-radius: 20px;
+    padding: 12px;
+    font-size: 1.2rem;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.register-form .btn-custom:hover {
+    background-color: white;
+    color: black;
+}
+
+.register-form a {
+    color: #D1CC6B;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-form a:hover {
+    text-decoration: underline;
+}

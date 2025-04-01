@@ -1,0 +1,53 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  link(rel='stylesheet' href='/css/style.css')
+  link(rel='stylesheet' href='/css/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap-grid.css')
+br
+br
+#myParagraph.container
+  form#registrationForm(action = '/addition' method ="post")
+    h2#h2 Register Agent
+    .mb-3
+      label Name
+      .row
+        .col
+          input#firstName.form-control(type='text' placeholder='First' required='' name='fname')
+        .col
+          input#lastName.form-control(type='text' placeholder='Last' required='' name='lname')
+    .mb-3
+      label Email
+      input#email.form-control(type='email' placeholder='Email' required='' name='email')
+    .mb-3
+      label Phone
+      input#phone.form-control(type='tel' placeholder='' required='' name='phone')
+    .col
+      select#state.form-control(name='branch')
+        option(value='') Branch
+        option(value='Maganjo') Maganjo
+         option(value='Matugga') Mattuga
+    br
+    br
+    button.btn.btn-primary(type='submit') Submit
+button#hideButton Add Sales Agent
+br
+br
+form#produceForm(action = '/addition' method ="post")
+  h2#h Register Produce
+  .mb-3
+    label(for='produceName') Produce Name:
+    input#produceName(type='text' name='produceName' required='')
+  .mb-3
+  label(for='category') Category:
+    input#category(type='text' name='category' required='')
+  .mb-3
+    label(for='quantity') Quantity (kg):
+    input#quantity(type='number' name='quantity' required='')
+  .mb-3
+    label(for='price') Price per kg:
+    input#price(type='number' name='price' required='')
+  button(type='submit') Register Produce
+script(src='/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.js')
+script(src='/js/addition.js')
