@@ -22,19 +22,18 @@ const express =require('express');
 const router = express.Router();
 //import models
 const Sale = require('../models/Sale');
-const User = require('../models/User');
+
 
 router.get('/addition',(req,res) =>{
     res.render("addition");
 });
-router.post('/addition',(req,res)=>{
+router.post('/addition', async(req,res)=>{
    try {
     const sale = new Sale(req.body);
-    const user = new User(req.body);
-    console.log(user)
+    
     console.log(sale)
-    user.save();
-    sale.save();
+    await sale.save();
+    
     res.redirect("/addition");
    } catch (error) {
     res.status(400).render("addition")

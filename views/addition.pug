@@ -8,7 +8,7 @@ head
 br
 br
 #myParagraph.container
-  form#registrationForm(action = '/addition' method ="post")
+  form#registrationForm(action = '/user' method ="post")
     h2#h2 Register Agent
     .mb-3
       label Name
@@ -38,16 +38,16 @@ form#produceForm(action = '/addition' method ="post")
   h2#h Register Produce
   .mb-3
     label(for='produceName') Produce Name:
-    input#produceName(type='text' name='produceName' required='')
+    input#produceName(type='text' name='produceName' )
   .mb-3
   label(for='category') Category:
-    input#category(type='text' name='category' required='')
+    input#category(type='text' name='category' )
   .mb-3
     label(for='quantity') Quantity (kg):
-    input#quantity(type='number' name='quantity' required='')
+    input#quantity(type='number' name='quantity')
   .mb-3
     label(for='price') Price per kg:
-    input#price(type='number' name='price' required='')
+    input#price(type='number' name='price' )
   button(type='submit') Register Produce
 script(src='/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.js')
 script(src='/js/addition.js')

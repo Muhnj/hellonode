@@ -2,45 +2,44 @@
 // const passportLocalMongoose = require('passport-local-mongoose');
 
 // const signupSchema = new mongoose.Schema({
-//     email: { 
-//         type: String, 
-//         required: true, 
-//         unique: true 
+//     email: {
+//         type: String,
+//         required: true,
+//         unique: true
 //     },
-//     role: { 
-//         type: String, 
-//         enum: ['Manager', 'Director', 'Sales Agent'], 
-//         required: true 
+//     role: {
+//         type: String,
+//         enum: ['Manager', 'Director', 'Sales Agent'],
+//         required: true
 //     },
 // },
 //  { timestamps: true });
-
 
 // signupSchema.plugin(passportLocalMongoose,{
 //     usernameField:'email'
 // });
 // module.exports = mongoose.model('Signup', signupSchema)
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const signupSchema = new mongoose.Schema({
-    email: { 
-        type: String,
-         unique: true,
-         required: true 
-        },
-    role: { 
-        type: String, 
-        trim: true,
-        required: true
-      },
-    password: {
-        type: String,
-        trim: true,
-        required: true
-    } 
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  role: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  branch: {
+    type: String,
+    trim: true,
+    required: true,
+  },
 });
 
-signupSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+signupSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 
-module.exports = mongoose.model('Signup', signupSchema);
+module.exports = mongoose.model("Signup", signupSchema);
