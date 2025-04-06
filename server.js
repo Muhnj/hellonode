@@ -16,6 +16,8 @@ const Signup = require("./models/Signup"); // import model
 const app = express();
 const PORT = 3000;
 
+
+const indexRoutes = require("./routes/indexRoutes");
 const additionRoutes = require("./routes/additionRoutes");
 const authRoutes = require("./routes/authRoutes");
 const managerRoutes = require("./routes/managerRoutes");
@@ -54,11 +56,14 @@ passport.serializeUser(Signup.serializeUser());
 passport.deserializeUser(Signup.deserializeUser());
 
 //routes
+app.use("/", indexRoutes);
 app.use("/", additionRoutes);
 app.use("/", authRoutes);
 app.use("/", managerRoutes);
 app.use("/", salesAgentRoutes);
 app.use("/", directorRoutes);
+
+
 
 //redirection to unavailable page
 app.get("*", (req, res) => {

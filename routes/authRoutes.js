@@ -51,4 +51,16 @@ router.post(
   }
 );
 
+
+router.get("/logout", (req, res) => {
+  if(req.session){
+    req.session.destroy((error)=>{
+      if(error){
+        return res.status(500).send(error,"Error logging out")
+      }
+      res.redirect("/")
+    }
+)}
+});
+
 module.exports = router;

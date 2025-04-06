@@ -1,1 +1,173 @@
-p managerdashboard
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title KGL - Manager Dashboard
+  link(rel='stylesheet' href='/css/md.css')
+header
+  .header-left
+    //- img(src='images/kgl-logo-small.png' alt='KGL Logo')
+    h1 Manager Dashboard
+  .header-right
+    span#branchName
+     a.button#logoutBtn(href="/logout") Logout
+nav
+  ul
+    li.active(data-section='procurement') Procurement
+    li(data-section='sales') Record Sale
+    li(data-section='inventory') Inventory
+    li(data-section='credit-sales') Credit Sales
+main
+  // Procurement Section
+  section#procurement.content-section.active
+    h2 Record New Procurement
+    form#procurementForm
+      .form-row
+        .form-group
+          label(for='produceName') Produce Name
+          input#produceName(type='text' )
+        .form-group
+          label(for='produceType') Produce Type
+          input#produceType(type='text' )
+      .form-row
+        .form-group
+          label(for='procurementDate') Date
+          input#procurementDate(type='date' )
+        .form-group
+          label(for='procurementTime') Time
+          input#procurementTime(type='time')
+      .form-row
+        .form-group
+          label(for='tonnage') Tonnage (kg)
+          input#tonnage(type='number' )
+        .form-group
+          label(for='cost') Cost (UGX)
+          input#cost(type='number' )
+      .form-row
+        .form-group
+          label(for='dealerName') Dealer Name
+          input#dealerName(type='text')
+        .form-group
+          label(for='dealerContact') Dealer Contact
+          input#dealerContact(type='tel')
+      .form-group
+        label(for='sellingPrice') Selling Price (UGX)
+        input#sellingPrice(type='number')
+      button(type='submit') Record Procurement
+  // Sales Section
+  section#sales.content-section
+    h2 Record New Sale
+    form#salesForm
+      .form-row
+        .form-group
+          label(for='saleProduceName') Produce Name
+          select#saleProduceName(required='')
+            option(value='') Select Produce
+            // Will be populated dynamically
+        .form-group
+          label(for='saleProduceType') Produce Type
+          input#saleProduceType(type='text' readonly='')
+      .form-row
+        .form-group
+          label(for='saleTonnage') Tonnage (kg)
+          input#saleTonnage(type='number' required='' min='0.01' step='0.01')
+          span#availableStock
+        .form-group
+          label(for='amountPaid') Amount Paid (UGX)
+          input#amountPaid(type='number' required='' min='10000')
+      .form-row
+        .form-group
+          label(for='buyerName') Buyer Name
+          input#buyerName(type='text' required='' pattern='[A-Za-z0-9\s]+' minlength='2')
+        .form-group
+          label(for='salesAgent') Sales Agent
+          select#salesAgent(required='')
+            option(value='') Select Agent
+            // Will be populated dynamically
+      .form-row
+        .form-group
+          label(for='saleDate') Date
+          input#saleDate(type='date' )
+        .form-group
+          label(for='saleTime') Time
+          input#saleTime(type='time' )
+      .form-group
+        label
+          input#isCreditSale(type='checkbox')
+          |  Credit Sale
+      button(type='submit') Record Sale
+  // Inventory Section
+  section#inventory.content-section
+    h2 Current Inventory
+    .inventory-controls
+      input#inventorySearch(type='text' placeholder='Search inventory...')
+      button#refreshInventory Refresh
+    table#inventoryTable
+      thead
+        tr
+          th Produce Name
+          th Type
+          th Stock (kg)
+          th Selling Price (UGX)
+          th Last Updated
+      tbody
+        // Will be populated dynamically
+    .inventory-summary
+      h3 Inventory Summary
+      .summary-cards
+        .card
+          h4 Total Stock Value
+          p#totalStockValue 0 UGX
+        .card
+          h4 Low Stock Items
+          p#lowStockCount 0
+        .card
+          h4 Out of Stock
+          p#outOfStockCount 0
+  // Credit Sales Section
+  section#credit-sales.content-section
+    h2 Credit Sales
+    .tab-controls
+      button.tab-btn.active(data-tab='pending') Pending
+      button.tab-btn(data-tab='overdue') Overdue
+      button.tab-btn(data-tab='completed') Completed
+    #pending-tab.tab-content.active
+      table#pendingCreditTable
+        thead
+          tr
+            th Buyer Name
+            th Produce
+            th Tonnage (kg)
+            th Amount Due (UGX)
+            th Due Date
+            th Sales Agent
+            th Actions
+        tbody
+          // Will be populated dynamically
+    #overdue-tab.tab-content
+      table#overdueCreditTable
+        thead
+          tr
+            th Buyer Name
+            th Produce
+            th Tonnage (kg)
+            th Amount Due (UGX)
+            th Due Date
+            th Days Overdue
+            th Actions
+        tbody
+          // Will be populated dynamically
+    #completed-tab.tab-content
+      table#completedCreditTable
+        thead
+          tr
+            th Buyer Name
+            th Produce
+            th Tonnage (kg)
+            th Amount Paid (UGX)
+            th Completion Date
+            th Sales Agent
+        tbody
+          // Will be populated dynamically
+script(src='scripts/manager.js')
+script(src='scripts/auth.js')

@@ -1,23 +1,3 @@
-// const express = require("express");
-// const router = express.Router();
-
-// const Signup = require('../models/Sale.js');
-
-// router.get("/addition", (req, res) =>{
-//     res.render("addtion")
-// });
-
-// router.post("/addition", (req, res) =>{
-//     console.log(req.body);
-//     res.redirect("/addition")
-
-// });
-
-
-
-// module.exports = router;
-
-
 const express =require('express');
 const router = express.Router();
 //import models
@@ -40,4 +20,16 @@ router.post('/addition', async(req,res)=>{
     console.log(error);
    }
 });
+router.get('/saleslist', async(req,res) =>{
+    try{
+        const items = await Sale.find();
+        res.render("sales", {
+            sales:items
+        })        
+    }catch(error){
+        res.status(400).send("unable to find items in the db")
+
+    }
+});
+
 module.exports=router;

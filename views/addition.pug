@@ -8,29 +8,7 @@ head
 br
 br
 #myParagraph.container
-  form#registrationForm(action = '/user' method ="post")
-    h2#h2 Register Agent
-    .mb-3
-      label Name
-      .row
-        .col
-          input#firstName.form-control(type='text' placeholder='First' required='' name='fname')
-        .col
-          input#lastName.form-control(type='text' placeholder='Last' required='' name='lname')
-    .mb-3
-      label Email
-      input#email.form-control(type='email' placeholder='Email' required='' name='email')
-    .mb-3
-      label Phone
-      input#phone.form-control(type='tel' placeholder='' required='' name='phone')
-    .col
-      select#state.form-control(name='branch')
-        option(value='') Branch
-        option(value='Maganjo') Maganjo
-         option(value='Matugga') Mattuga
-    br
-    br
-    button.btn.btn-primary(type='submit') Submit
+  
 button#hideButton Add Sales Agent
 br
 br

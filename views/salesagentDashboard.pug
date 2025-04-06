@@ -1,1 +1,151 @@
-p sales dashboard
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title KGL - Sales Agent Dashboard
+  link(rel='stylesheet' href='/css/md.css')
+header
+  .header-left
+    //- img(src='images/kgl-logo-small.png' alt='KGL Logo')
+    h1 Sales Agent Dashboard
+  .header-right
+    span#branchName
+    button#logoutBtn Logout
+nav
+  ul
+    li.active(data-section='record-sale') Record Sale
+    li(data-section='credit-sales') Credit Sales
+    li(data-section='sales-history') Sales History
+main
+  // Record Sale Section
+  section#record-sale.content-section.active
+    h2 Record New Sale
+    form#agentSalesForm
+      .form-row
+        .form-group
+          label(for='agentSaleProduceName') Produce Name
+          select#agentSaleProduceName(required='')
+            option(value='') Select Produce
+            // Will be populated dynamically
+        .form-group
+          label(for='agentSaleProduceType') Produce Type
+          input#agentSaleProduceType(type='text' readonly='')
+      .form-row
+        .form-group
+          label(for='agentSaleTonnage') Tonnage (kg)
+          input#agentSaleTonnage(type='number' required='' min='0.01' step='0.01')
+          span#agentAvailableStock
+        .form-group
+          label(for='agentAmountPaid') Amount Paid (UGX)
+          input#agentAmountPaid(type='number' required='' min='10000')
+      .form-row
+        .form-group
+          label(for='agentBuyerName') Buyer Name
+          input#agentBuyerName(type='text' required='' pattern='[A-Za-z0-9\s]+' minlength='2')
+        .form-group
+          label(for='agentBuyerContact') Buyer Contact
+          input#agentBuyerContact(type='tel' pattern='[0-9]{10,15}')
+      .form-row
+        .form-group
+          label(for='agentSaleDate') Date
+          input#agentSaleDate(type='date' required='')
+        .form-group
+          label(for='agentSaleTime') Time
+          input#agentSaleTime(type='time' required='')
+      .form-group
+        label
+          input#agentIsCreditSale(type='checkbox')
+          |  Credit Sale
+      // Credit Sale Fields (hidden by default)
+      #agentCreditFields(style='display: none;')
+        .form-row
+          .form-group
+            label(for='agentBuyerNIN') National ID (NIN)
+            input#agentBuyerNIN(type='text' pattern='[A-Za-z0-9]+')
+          .form-group
+            label(for='agentBuyerLocation') Location
+            input#agentBuyerLocation(type='text' pattern='[A-Za-z0-9\s]+' minlength='2')
+        .form-group
+          label(for='agentDueDate') Due Date
+          input#agentDueDate(type='date')
+      button(type='submit') Record Sale
+  // Credit Sales Section
+  section#credit-sales.content-section
+    h2 Credit Sales
+    .tab-controls
+      button.tab-btn.active(data-tab='agent-pending') Pending
+      button.tab-btn(data-tab='agent-overdue') Overdue
+      button.tab-btn(data-tab='agent-completed') Completed
+    #agent-pending-tab.tab-content.active
+      table#agentPendingCreditTable
+        thead
+          tr
+            th Buyer Name
+            th Produce
+            th Tonnage (kg)
+            th Amount Due (UGX)
+            th Due Date
+            th Actions
+        tbody
+          // Will be populated dynamically
+    #agent-overdue-tab.tab-content
+      table#agentOverdueCreditTable
+        thead
+          tr
+            th Buyer Name
+            th Produce
+            th Tonnage (kg)
+            th Amount Due (UGX)
+            th Due Date
+            th Days Overdue
+            th Actions
+        tbody
+          // Will be populated dynamically
+    #agent-completed-tab.tab-content
+      table#agentCompletedCreditTable
+        thead
+          tr
+            th Buyer Name
+            th Produce
+            th Tonnage (kg)
+            th Amount Paid (UGX)
+            th Completion Date
+        tbody
+          // Will be populated dynamically
+  // Sales History Section
+  section#sales-history.content-section
+    h2 Sales History
+    .filter-controls
+      .form-group
+        label(for='historyStartDate') From
+        input#historyStartDate(type='date')
+      .form-group
+        label(for='historyEndDate') To
+        input#historyEndDate(type='date')
+      button#applyHistoryFilter Apply Filter
+      button#resetHistoryFilter Reset
+    table#salesHistoryTable
+      thead
+        tr
+          th Date
+          th Produce
+          th Tonnage (kg)
+          th Amount (UGX)
+          th Buyer
+          th Payment Type
+      tbody
+        // Will be populated dynamically
+    .sales-summary
+      h3 Sales Summary
+      .summary-cards
+        .card
+          h4 Total Sales
+          p#totalSalesAmount 0 UGX
+        .card
+          h4 Cash Sales
+          p#cashSalesAmount 0 UGX
+        .card
+          h4 Credit Sales
+          p#creditSalesAmount 0 UGX
+script(src='scripts/agent.js')
+script(src='scripts/auth.js')
