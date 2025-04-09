@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KGL - Director Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="images/kgl-logo-small.png" alt="KGL Logo">
+            <h1>Director Dashboard</h1>
+        </div>
+        <div class="header-right">
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li class="active" data-section="overview">Overview</li>
+            <li data-section="branch-comparison">Branch Comparison</li>
+            <li data-section="financial-summary">Financial Summary</li>
+            <li data-section="inventory-summary">Inventory Summary</li>
+        </ul>
+    </nav>
+    
+    <main>
+        <!-- Overview Section -->
+        <section id="overview" class="content-section active">
+            <h2>Company Overview</h2>
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Total Sales</h3>
+                    <p id="totalCompanySales">0 UGX</p>
+                    <div class="trend up">↑ 12% from last month</div>
+                </div>
+                <div class="card">
+                    <h3>Total Inventory Value</h3>
+                    <p id="totalCompanyInventory">0 UGX</p>
+                </div>
+                <div class="card">
+                    <h3>Outstanding Credit</h3>
+                    <p id="totalOutstandingCredit">0 UGX</p>
+                    <div class="trend down">↓ 5% from last month</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="salesTrendChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="inventoryDistributionChart"></canvas>
+            </div>
+        </section>
+        
+        <!-- Branch Comparison Section -->
+        <section id="branch-comparison" class="content-section">
+            <h2>Branch Performance</h2>
+            <div class="filter-controls">
+                <div class="form-group">
+                    <label for="comparisonPeriod">Period</label>
+                    <select id="comparisonPeriod">
+                        <option value="week">This Week</option>
+                        <option value="month" selected>This Month</option>
+                        <option value="quarter">This Quarter</option>
+                        <option value="year">This Year</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+                <div id="customRangeControls" style="display: none;">
+                    <div class="form-group">
+                        <label for="customStartDate">From</label>
+                        <input type="date" id="customStartDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="customEndDate">To</label>
+                        <input type="date" id="customEndDate">
+                    </div>
+                </div>
+                <button id="applyComparisonFilter">Apply</button>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="branchSalesComparisonChart"></canvas>
+            </div>
+            
+            <table id="branchComparisonTable">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Maganjo</th>
+                        <th>Matugga</th>
+                        <th>Difference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Sales</td>
+                        <td id="maganjoSales">0 UGX</td>
+                        <td id="matuggaSales">0 UGX</td>
+                        <td id="salesDifference">0 UGX (0%)</td>
+                    </tr>
+                    <tr>
+                        <td>Inventory Value</td>
+                        <td id="maganjoInventory">0 UGX</td>
+                        <td id="matuggaInventory">0 UGX</td>
+                        <td id="inventoryDifference">0 UGX (0%)</td>
+                    </tr>
+                    <tr>
+                        <td>Credit Sales</td>
+                        <td id="maganjoCredit">0 UGX</td>
+                        <td id="matuggaCredit">0 UGX</td>
+                        <td id="creditDifference">0 UGX (0%)</td>
+                    </tr>
+                    <tr>
+                        <td>Top Selling Product</td>
+                        <td id="maganjoTopProduct">-</td>
+                        <td id="matuggaTopProduct">-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Financial Summary Section -->
+        <section id="financial-summary" class="content-section">
+            <h2>Financial Summary</h2>
+            <div class="filter-controls">
+                <div class="form-group">
+                    <label for="financialYear">Year</label>
+                    <select id="financialYear">
+                        <!-- Will be populated dynamically -->
+                    </select>
+                </div>
+                <button id="generateFinancialReport">Generate Report</button>
+                <button id="exportFinancialReport">Export as PDF</button>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="monthlyRevenueChart"></canvas>
+            </div>
+            
+            <div class="financial-tables">
+                <div class="financial-table">
+                    <h3>Monthly Revenue</h3>
+                    <table id="monthlyRevenueTable">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Revenue (UGX)</th>
+                                <th>Growth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="financial-table">
+                    <h3>Annual Summary</h3>
+                    <table id="annualSummaryTable">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Amount (UGX)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Revenue</td>
+                                <td id="totalAnnualRevenue">0</td>
+                            </tr>
+                            <tr>
+                                <td>Total Procurement Cost</td>
+                                <td id="totalProcurementCost">0</td>
+                            </tr>
+                            <tr>
+                                <td>Gross Profit</td>
+                                <td id="grossProfit">0</td>
+                            </tr>
+                            <tr>
+                                <td>Profit Margin</td>
+                                <td id="profitMargin">0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Inventory Summary Section -->
+        <section id="inventory-summary" class="content-section">
+            <h2>Inventory Summary</h2>
+            <div class="filter-controls">
+                <div class="form-group">
+                    <label for="inventoryBranchFilter">Branch</label>
+                    <select id="inventoryBranchFilter">
+                        <option value="all">All Branches</option>
+                        <option value="Maganjo">Maganjo</option>
+                        <option value="Matugga">Matugga</option>
+                    </select>
+                </div>
+                <button id="refreshInventorySummary">Refresh</button>
+            </div>
+            
+            <div class="inventory-summary-cards">
+                <div class="card">
+                    <h3>Total Inventory Value</h3>
+                    <p id="summaryInventoryValue">0 UGX</p>
+                </div>
+                <div class="card">
+                    <h3>Products in Stock</h3>
+                    <p id="productsInStock">0</p>
+                </div>
+                <div class="card">
+                    <h3>Low Stock Items</h3>
+                    <p id="summaryLowStock">0</p>
+                </div>
+                <div class="card">
+                    <h3>Out of Stock</h3>
+                    <p id="summaryOutOfStock">0</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="inventoryTurnoverChart"></canvas>
+            </div>
+            
+            <table id="inventorySummaryTable">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Type</th>
+                        <th>Maganjo Stock</th>
+                        <th>Matugga Stock</th>
+                        <th>Total Stock</th>
+                        <th>Value (UGX)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Will be populated dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/director.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+</html>

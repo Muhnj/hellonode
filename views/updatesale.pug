@@ -9,23 +9,23 @@ br
 br
 #myParagraph.container
   
-button#hideButton Add A Sale
+button#hideButton Update A Sale
 br
 br
-form#produceForm(action = '/addition' method ="post")
-  h2#h Register Sale
+form#produceForm(action = '/updateSale?id'+sale.id method ="post")
+  h2#h update  sale
   .mb-3
     label(for='produceName') Produce Name:
-    input#produceName(type='text' name='produceName' )
+    input#produceName( name='produceName' value=sale.produceName)
   .mb-3
   label(for='category') Category:
-    input#category(type='text' name='category' )
+    input#category( name='category' value=sale.category )
   .mb-3
     label(for='quantity') Quantity (kg):
-    input#quantity(type='number' name='quantity')
+    input#quantity( name='quantity' value=sale.quantity)
   .mb-3
     label(for='price') Price per kg:
-    input#price(type='number' name='price' )
+    input#price( name='price' value=sale.price)
   button(type='submit') Register Produce
 script(src='/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.js')
 script(src='/js/addition.js')

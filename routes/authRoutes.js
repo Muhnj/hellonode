@@ -41,26 +41,35 @@ router.post(
   (req, res) => {
     console.log(req.body);
     req.session.user = req.user;
-    if (req.user.role==="Manager"){
-      res.redirect("/managerDash");      
-    }else if(req.user.role==="Director"){
+    if (req.user.role === "Manager") {
       res.redirect("/managerDash");
-    }else if(req.user.role==="SalesAgent"){
+    } else if (req.user.role === "Director") {
+      res.redirect("/managerDash");
+    } else if (req.user.role === "SalesAgent") {
       res.redirect("/salesdash");
-    }    
+    }
   }
 );
 
-
 router.get("/logout", (req, res) => {
-  if(req.session){
-    req.session.destroy((error)=>{
-      if(error){
-        return res.status(500).send(error,"Error logging out")
+  if (req.session) {
+    req.session.destroy((error) => {
+      if (error) {
+        return res.status(500).send(error, "Error logging out");
       }
-      res.redirect("/")
-    }
-)}
+      res.redirect("/");
+    });
+  }
+});
+router.get("/userlist", async (req, res) => {
+  try {
+    const user = await Signup.find().sort({ $natural: -1 });
+    res.render("userlist", {
+      signups: user,
+    });
+  } catch (error) {
+    res.status(400).send("unable to find items in the db");
+  }
 });
 
 module.exports = router;

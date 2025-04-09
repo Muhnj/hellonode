@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const moment = require("moment");
 const expressSession = require("express-session")({
   secret: "secret",
   resave: false,
@@ -10,6 +11,8 @@ const expressSession = require("express-session")({
 });
 
 require("dotenv").config();
+
+
 const Signup = require("./models/Signup"); // import model
 
 //Intatiations
@@ -25,7 +28,7 @@ const salesAgentRoutes = require("./routes/salesAgentRoutes");
 const directorRoutes = require("./routes/directorRoutes");
 
 
-
+app.locals.moment = moment;
 //configurations
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
@@ -66,7 +69,7 @@ app.use("/", directorRoutes);
 
 
 //redirection to unavailable page
-app.get("*", (req, res) => {
+app.get("*url", (req, res) => {
   res.send("oops! page not found");
 });
 

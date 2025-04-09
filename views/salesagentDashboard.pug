@@ -20,54 +20,58 @@ main
   // Record Sale Section
   section#record-sale.content-section.active
     h2 Record New Sale
-    form#agentSalesForm
+    form#agentSalesForm(action="/sale" post="method")
       .form-row
         .form-group
           label(for='agentSaleProduceName') Produce Name
-          select#agentSaleProduceName(required='')
+          select#agentSaleProduceName(name="produce")
             option(value='') Select Produce
+            option(value='maize') Maize Grains
+            option(value='millet') Millet 
+            option(value='sorghum') Sorghum 
+            option(value='beans') Beans
             // Will be populated dynamically
         .form-group
           label(for='agentSaleProduceType') Produce Type
-          input#agentSaleProduceType(type='text' readonly='')
+          input#agentSaleProduceType(type='text' name="pType")
       .form-row
         .form-group
           label(for='agentSaleTonnage') Tonnage (kg)
-          input#agentSaleTonnage(type='number' required='' min='0.01' step='0.01')
+          input#agentSaleTonnage(type='number' name="tones")
           span#agentAvailableStock
         .form-group
           label(for='agentAmountPaid') Amount Paid (UGX)
-          input#agentAmountPaid(type='number' required='' min='10000')
+          input#agentAmountPaid(type='number' name="amount")
       .form-row
         .form-group
           label(for='agentBuyerName') Buyer Name
-          input#agentBuyerName(type='text' required='' pattern='[A-Za-z0-9\s]+' minlength='2')
+          input#agentBuyerName(type='text' name="bName")
         .form-group
           label(for='agentBuyerContact') Buyer Contact
-          input#agentBuyerContact(type='tel' pattern='[0-9]{10,15}')
+          input#agentBuyerContact(type='tel' name="bContact")
       .form-row
         .form-group
           label(for='agentSaleDate') Date
-          input#agentSaleDate(type='date' required='')
+          input#agentSaleDate(type='date' name="date")
         .form-group
           label(for='agentSaleTime') Time
-          input#agentSaleTime(type='time' required='')
+          input#agentSaleTime(type='time' name="time")
       .form-group
         label
-          input#agentIsCreditSale(type='checkbox')
+          input#agentIsCreditSale(type='checkbox' name="creditsale")
           |  Credit Sale
       // Credit Sale Fields (hidden by default)
       #agentCreditFields(style='display: none;')
         .form-row
           .form-group
             label(for='agentBuyerNIN') National ID (NIN)
-            input#agentBuyerNIN(type='text' pattern='[A-Za-z0-9]+')
+            input#agentBuyerNIN(type='text' name="nin")
           .form-group
             label(for='agentBuyerLocation') Location
-            input#agentBuyerLocation(type='text' pattern='[A-Za-z0-9\s]+' minlength='2')
+            input#agentBuyerLocation(type='text' name="location")
         .form-group
           label(for='agentDueDate') Due Date
-          input#agentDueDate(type='date')
+          input#agentDueDate(type='date' name="dDate")
       button(type='submit') Record Sale
   // Credit Sales Section
   section#credit-sales.content-section
