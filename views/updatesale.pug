@@ -12,7 +12,7 @@ br
 button#hideButton Update A Sale
 br
 br
-form#produceForm(action = '/updateSale?id'+sale.id method ="post")
+form#produceForm(action = '/updatesale?id='+sale.id method ="post")
   h2#h update  sale
   .mb-3
     label(for='produceName') Produce Name:
@@ -26,6 +26,6 @@ form#produceForm(action = '/updateSale?id'+sale.id method ="post")
   .mb-3
     label(for='price') Price per kg:
     input#price( name='price' value=sale.price)
-  button(type='submit') Register Produce
+  button(type='submit') update Produce
 script(src='/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.js')
 script(src='/js/addition.js')

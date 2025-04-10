@@ -26,6 +26,8 @@ const authRoutes = require("./routes/authRoutes");
 const managerRoutes = require("./routes/managerRoutes");
 const salesAgentRoutes = require("./routes/salesAgentRoutes");
 const directorRoutes = require("./routes/directorRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+
 
 
 app.locals.moment = moment;
@@ -65,6 +67,7 @@ app.use("/", authRoutes);
 app.use("/", managerRoutes);
 app.use("/", salesAgentRoutes);
 app.use("/", directorRoutes);
+app.use("/", profileRoutes);
 
 
 

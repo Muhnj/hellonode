@@ -2,8 +2,8 @@
 /* manger dash
 /* Base Styles */
 :root {
-    --primary-color: #34db34;
-    --secondary-color: #34db34;
+    --primary-color: rgb(5, 73, 28) ;
+    --secondary-color:  rgb(5, 73, 28) ;
     --accent-color: #e74c3c;
     --light-color: #ecf0f1;
     --dark-color: #2c3e50;

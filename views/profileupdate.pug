@@ -1,0 +1,55 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title Profile | Karibu Groceries System
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+link(rel="stylesheet", href="/css/pof.css")
+//  Sidebar 
+.sidebar
+  .sidebar-header
+    h3 Karibu Groceries 
+  ul.sidebar-menu
+    li
+      a(href="/managerdash")
+        i.fas.fa-home
+        | Dashboard
+    li
+      a(href="/")
+        i.fas.fa-calendar-plus
+        | Add Produce
+    li
+      a(href="/")
+        i.fas.fa-history
+        | Edit Produce
+    li
+      a(href="/")
+        i.fas.fa-credit-card
+        | Payments
+    li.active
+      a(href="/profile")
+        i.fas.fa-user
+        | Profile
+    li
+      a(href="/login")
+        i.fas.fa-sign-out-alt
+        | Logout
+//  Main Content 
+.main-content
+  h2 My Profile
+  .profile-container
+    .user-avatar
+      img(src="https://via.placeholder.com/100", alt="User Avatar")
+      h3 Munir M
+    form
+      .form-group
+        label(for="fullname") Full Name
+        input#fullname.form-control(type="text", value="Munir M")
+      .form-group
+        label(for="email") Email Address
+        input#email.form-control(type="email", value="munirmujuzi@example.com")
+      .form-group
+        label(for="phone") Phone Number
+        input#phone.form-control(type="tel", value="+256712345678")
+      .form-group
+        label(for="address") Address
+        input#address.form-control(type="text", value="Kampala, Uganda")
+      button.btn-primary(type="submit") Update Profile
