@@ -12,7 +12,7 @@ br
 button#hideButton Add A Sale
 br
 br
-form#produceForm(action = '/addition' method ="post")
+form#produceForm(action = '/addition' method ="post" enctype='multipart/form-data')
   h2#h Register Sale
   .mb-3
     label(for='produceName') Produce Name:
@@ -23,6 +23,9 @@ form#produceForm(action = '/addition' method ="post")
   .mb-3
     label(for='quantity') Quantity (kg):
     input#quantity(type='number' name='quantity')
+  .mb-3
+    label(for='image') Produce Image
+    input#quantity(type='file' name='image')
   .mb-3
     label(for='price') Price per kg:
     input#price(type='number' name='price' )

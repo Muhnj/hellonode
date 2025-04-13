@@ -49,6 +49,7 @@ app.set("views", path.join(__dirname, "views"));
 
 //middle ware
 app.use(express.static(path.join(__dirname, "public"))); //specifies a folder for static files
+app.use("/public/img/uploads", express.static(__dirname + "/public/img/uploads"));
 app.use(express.urlencoded({ extended: true }));
 // express session configs
 app.use(expressSession);

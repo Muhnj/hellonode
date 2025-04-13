@@ -1,16 +1,28 @@
 const express = require("express");
 const router = express.Router();
 const connectEnsureLogin =require("connect-ensure-login")
+const multer = require("multer")
 //import models
 const Sale = require("../models/Sale");
+
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+  cb(null, "public/img/uploads");
+  },
+  filename: (req, file, cb) => {
+  cb(null, file.originalname);
+  },
+  });
+  var upload = multer({ storage: storage });
 
 router.get("/addition", (req, res) => {
   res.render("addition");
 });
-router.post("/addition", async (req, res) => {
+router.post("/addition", upload.single("image"),async (req, res) => {
   try {
     const sale = new Sale(req.body);
-
+    sale.image = req.file.path;
     console.log(sale);
     await sale.save();
 

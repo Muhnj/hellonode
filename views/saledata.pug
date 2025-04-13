@@ -12,6 +12,7 @@ html
       table.table.table-bordered.table-striped
         thead
           tr
+            th Produce Image
             th Produce Name
             th Category
             th Quantity (kg)
@@ -22,10 +23,11 @@ html
           if sales.length
               each sale in sales
                 tr
+                  img(src="/"+sale.image alt="image" width="100px" height="100px")
                   td #{sale.produceName}
                   td #{sale.category}
                   td #{sale.quantity}
-                  td #{sale.price}
+                  td #{sale.price}                  
                   td
                      a.btn.btn-primary.btn-block(href="/updateSale/"+sale._id)  update
                   td
